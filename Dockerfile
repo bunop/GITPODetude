@@ -19,6 +19,7 @@ USER root
 RUN apt-get update && \
     apt-get install -y \
         build-essential \
+        cargo \
         wget \
         curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/
@@ -29,6 +30,14 @@ RUN add-apt-repository -y ppa:apptainer/ppa && \
     apt-get update --quiet && \
     apt install -y apptainer && \
     apt-get clean && rm -rf /var/lib/apt/lists/
+
+# Compile gafpack
+RUN git clone https://github.com/ekg/gafpack.git && \
+    cd gafpack && \
+    cargo build --release && \
+    cp target/release/gafpack /usr/local/bin/ && \
+    cd .. && \
+    rm -rf gafpack
 
 # set environment variables
 ENV CONDA_DIR="/opt/conda"
