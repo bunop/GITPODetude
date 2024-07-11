@@ -14,11 +14,17 @@ on:
   push:
     branches:
       - 'master'
+    paths:
+      - 'Dockerfile'
+      - 'environment.yml'
     tags:
       - 'v*'
   pull_request:
     branches:
       - 'master'
+    paths:
+      - 'Dockerfile'
+      - 'environment.yml'
 
 
 jobs:
