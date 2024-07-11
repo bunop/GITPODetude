@@ -61,3 +61,7 @@ RUN mkdir -p /home/gitpod/.conda && \
 # Change user to gitpod
 USER gitpod
 
+# Create the environment:
+COPY environment.yml .
+
+RUN conda env create -f environment.yml
